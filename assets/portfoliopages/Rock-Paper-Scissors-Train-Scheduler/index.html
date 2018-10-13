@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+
+  <head>
+
+    <meta charset="UTF-8">
+    <title>Train Schedule</title>
+
+
+    <!-- Style sheets -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+  </head>
+
+  <body>
+    
+    <div class="jumbotron center-align jumbo-style">
+        <h2>Trains</h2>
+    </div>
+
+    <div class="panel panel-success primary-panel-style" id="log-in-panel">
+        <div class="panel-heading">
+            <h4 class="panel-title"><i class="fa fa-train"></i>   Sign In</h4>
+        </div>
+        <div class="panel-body">
+            <br><br> 
+            <fieldset>
+                <div class="form-group">
+                    <div class = "row">
+                        <label for="inputEmail" class="col-md-3 control-label label-align">EMail</label>
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" id="inputEmail" placeholder="Email">
+                        </div>
+                    </div>
+                    <div class = "row">
+                        <label for="inputPassword" class="col-md-3 control-label label-align">Password</label>
+                        <div class="col-md-6">
+                            <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="row center-align" id="button-row">
+                    <a href="#" class="btn btn-info" id="sign-in-btn">Sign In</a>
+                    <a href="#" class="btn btn-primary" id="sign-up-btn">Sign Up</a>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+    
+
+    <div class="panel panel-primary primary-panel-style schedule-panel">
+        <div class="panel-heading">
+            <h4 class="panel-title"><i class="fa fa-train"></i>   Train Schedule</h4>
+        </div>
+        <div class="panel-body"> 
+            <table class="table table-striped table-hover table-style" id="trainTable">
+                <caption> Click on the button in the "Edit" column to edit or delete trains!</caption>
+                <thead>
+                    <tr>
+                        <th>Edit</th>
+                        <th>Train Name</th>
+                        <th>Destination</th>
+                        <th>First Train</th>
+                        <th>Frequency (min)</th>
+                        <th>Next Train</th>
+                        <th>Minutes Away</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- body is populated from database -->
+                </tbody>
+            </table> 
+        </div>
+    </div>
+
+
+    <div class="panel panel-primary primary-panel-style" id="addTrain">
+        <div class="panel-heading">
+            <h4 class="panel-title"><i class="fa fa-train"></i>   Add Trains</h4>
+        </div>
+        <div class="panel-body">
+
+            <div class="form-group container-fluid">
+                <div class="row">
+                    <label class ="label-align col-md-3">Train Name:</label>
+                    <input class="input-style col-md-6" id="trainName" type="text">
+                </div>
+                <div class="row">
+                    <label class="label-align col-md-3">Destination:</label>
+                    <input class="input-style col-md-6" id="trainDestination" type="text">
+                </div>
+                <div class="row">
+                    <label class="label-align col-md-3">First Train Time (HH:mm):</label>
+                    <input class="input-style col-md-6" id="trainFirstTime" type="text" value="HH:mm military time">
+                </div>
+                <div class="row">
+                    <label class="label-align col-md-3" for="focusedInput">Frequency (min): </label>
+                    <input class="input-style col-md-6" id="trainFrequency" type="text">
+                    <a href="#" class="btn btn-primary btn-sm col-md-1 col-md-offset-1" id="addTrain-btn">Submit</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-warning primary-panel-style" id="editTrain">
+        <div class="panel-heading">
+            <h4 class="panel-title"><i class="fa fa-train"></i>   Change Train Schedule</h4>
+        </div>
+        <div class="panel-body">
+
+            <div class="form-group container-fluid">
+               
+                <div class="row">
+                    <label class ="label-align col-md-3">Train Name:</label>
+                    <input class="input-style col-md-6" id="trainNameEdit" type="text"></select>
+                </div>
+                <div class="row">
+                    <label class="label-align col-md-3">Destination:</label>
+                    <input class="input-style col-md-6" id="trainDestinationEdit" type="text">
+                </div>
+                <div class="row">
+                    <label class="label-align col-md-3">First Train Time (HH:mm):</label>
+                    <input class="input-style col-md-6" id="trainFirstTimeEdit" type="text" value="HH:mm military time">
+                </div>
+                <div class="row">
+                    <label class="label-align col-md-3" for="focusedInput">Frequency (min): </label>
+                    <input class="input-style col-md-6" id="trainFrequencyEdit" type="text">
+                </div>
+                <br>
+                <div class ="row center-align">
+                    <a href="#" class="btn btn-danger edit-btn-style" id="deleteTrain-btn">Delete This Train</a>
+                    <a href="#" class="btn btn-primary edit-btn-style" id="updateTrain-btn">Update</a>
+                    <a href="#" class="btn btn-warning edit-btn-style" id="cancelEdit-btn">Cancel</a>
+                </div>    
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default logout-panel">
+        <div class="panel-body">
+            <a href="#" class="btn btn-success" id="sign-out-btn">Sign Out</a>
+        </div>
+    </div>
+    <div id="msgModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+        <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"></button>
+                    <h4 class="modal-title" id="msgModaltitle"><span class="fa fa-exclamation-triangle" style="font-size:24px"></span> </h4>
+                </div>
+                <div class="modal-body">
+                    <div id="modal-message">
+            <!-- populated by JavaScript -->
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default close-yes" id="yes-btn" data-dismiss="modal">Yes</button>
+                        <button type="button" class="btn btn-default close-no" id="no-btn" data-dismiss="modal">No</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="msgModal-ok" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+        <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"></button>
+                    <h4 class="modal-title" id="msgModaltitle"><span class="fa fa-exclamation-triangle" style="font-size:24px"></span> </h4>
+                </div>
+                <div class="modal-body">
+                    <div id="modal-message-ok">
+                    <!-- populated by JQuery -->
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default close-ok" id="ok-btn" data-dismiss="modal">OK</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.6.4/firebase.js"></script>
+    <script src='assets/javascript/trainSchedule.js', type="text/javascript"></script>
+    
+  </body>
+
+</html>
